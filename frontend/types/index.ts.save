@@ -1,0 +1,68 @@
+export interface Lounger {
+  id: number;
+  name: string;
+  type: string;
+  price: number;
+  description: string;
+  image_url: string;
+  is_available: boolean;
+}
+
+export interface Booking {
+  id: number;
+  lounger_id: number;
+  customer_name: string;
+  customer_email: string;
+  customer_phone: string;
+  booking_date: string;
+  start_time: string;
+  end_time: string;
+  status: string;
+  total_price: number;
+  created_at: string;
+}
+
+export interface BookingRequest {
+  lounger_id: number;
+  customer_name: string;
+  customer_email: string;
+  customer_phone: string;
+  booking_date: string;
+  start_time: string;
+  end_time: string;
+}
+export interface Lounger {
+  id: string
+  name: string
+  beach_name: string
+  description: string
+  price_per_hour: number
+  image_url?: string
+  available: boolean
+  location: {
+    lat: number
+    lng: number
+  }
+}
+
+export interface Booking {
+  id: string
+  lounger_id: string
+  customer_name: string
+  customer_phone: string
+  customer_email: string
+  start_time: string
+  end_time: string
+  total_price: number
+  status: 'active' | 'completed' | 'cancelled'
+  created_at: string
+}
+
+export interface BookingRequest {
+  lounger_id: string
+  customer_name: string
+  customer_phone: string
+  customer_email: string
+  start_time: string
+  end_time: string
+}
