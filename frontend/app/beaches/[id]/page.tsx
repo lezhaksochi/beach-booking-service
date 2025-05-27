@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Beach, Lounger, BeachLayoutData, BookingRequest, LoungerType, LoungerClass, UmbrellaType, SunPosition } from '@/types'
-import { fetchBeachLayout, createBooking } from '@/lib/api'
+import { fetchBeachLayout, createBooking, fetchBeachById } from '@/lib/api'
 import BeachLayout from '@/components/BeachLayout'
+import BeachSectorView from '@/components/BeachSectorView'
 import { format, addHours } from 'date-fns'
 import { ru } from 'date-fns/locale'
 import { useAuth } from '@/contexts/AuthContext'
@@ -22,12 +23,14 @@ interface FilterState {
 export default function BeachPage({ params }: { params: { id: string } }) {
   const router = useRouter()
   const { isAuthenticated, user } = useAuth()
+  const [beach, setBeach] = useState<Beach | null>(null)
   const [layoutData, setLayoutData] = useState<BeachLayoutData | null>(null)
   const [selectedLounger, setSelectedLounger] = useState<Lounger | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [showBookingForm, setShowBookingForm] = useState(false)
   const [booking, setBooking] = useState(false)
+  const [viewMode, setViewMode] = useState<'sectors' | 'classic'>('sectors')
   const [showAuthModal, setShowAuthModal] = useState(false)
   const [authMode, setAuthMode] = useState<'login' | 'register'>('login')
   const [showAuthSelection, setShowAuthSelection] = useState(false)
@@ -63,20 +66,27 @@ export default function BeachPage({ params }: { params: { id: string } }) {
   }, [user])
 
   useEffect(() => {
-    const loadBeachLayout = async () => {
+    const loadBeachData = async () => {
       try {
-        const data = await fetchBeachLayout(params.id)
-        setLayoutData(data)
+        // Загружаем основную информацию о пляже
+        const beachData = await fetchBeachById(params.id)
+        setBeach(beachData)
+        
+        // Загружаем схему для классического режима
+        if (viewMode === 'classic') {
+          const layoutData = await fetchBeachLayout(params.id)
+          setLayoutData(layoutData)
+        }
       } catch (err) {
-        setError('Ошибка при загрузке схемы пляжа')
+        setError('Ошибка при загрузке данных пляжа')
         console.error(err)
       } finally {
         setLoading(false)
       }
     }
 
-    loadBeachLayout()
-  }, [params.id])
+    loadBeachData()
+  }, [params.id, viewMode])
 
   const handleLoungerSelect = (lounger: Lounger | null) => {
     if (lounger && !isAuthenticated) {
@@ -273,6 +283,46 @@ export default function BeachPage({ params }: { params: { id: string } }) {
           </ol>
         </nav>
 
+        {/* Переключатель режимов просмотра */}
+        <div className="mb-8 flex justify-center">
+          <div className="bg-gray-100 p-1 rounded-lg inline-flex">
+            <button
+              onClick={() => setViewMode('sectors')}
+              className={`
+                px-6 py-2 rounded-md font-medium transition-all duration-200
+                ${viewMode === 'sectors'
+                  ? 'bg-blue-500 text-white shadow-md'
+                  : 'text-gray-600 hover:text-gray-800'
+                }
+              `}
+            >
+              🏖️ Секторы
+            </button>
+            <button
+              onClick={() => setViewMode('classic')}
+              className={`
+                px-6 py-2 rounded-md font-medium transition-all duration-200
+                ${viewMode === 'classic'
+                  ? 'bg-blue-500 text-white shadow-md'
+                  : 'text-gray-600 hover:text-gray-800'
+                }
+              `}
+            >
+              🗺️ Схема
+            </button>
+          </div>
+        </div>
+
+        {/* Режим с секторами */}
+        {viewMode === 'sectors' && beach && (
+          <BeachSectorView 
+            beachId={params.id} 
+            beachName={beach.name} 
+          />
+        )}
+
+        {/* Классический режим */}
+        {viewMode === 'classic' && layoutData && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Главный контент */}
           <div className="lg:col-span-2">
@@ -707,6 +757,7 @@ export default function BeachPage({ params }: { params: { id: string } }) {
               </div>
             </div>
           </div>
+        )}
         )}
 
         {/* Auth Modal */}

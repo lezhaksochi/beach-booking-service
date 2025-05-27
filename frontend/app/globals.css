@@ -69,6 +69,35 @@
       @apply mx-2 hover:scale-[1.01];
     }
   }
+
+  /* Секторы и шезлонги */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .writing-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  /* Анимации для шезлонгов */
+  .lounger-pulse {
+    animation: lounger-pulse 2s infinite;
+  }
+
+  @keyframes lounger-pulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(255, 217, 61, 0.7);
+    }
+    50% {
+      box-shadow: 0 0 0 10px rgba(255, 217, 61, 0);
+    }
+  }
   
   /* Анимации */
   .fade-in {

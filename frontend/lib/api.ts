@@ -145,5 +145,43 @@ export const bookingAPI = {
   cancel: cancelBooking,
 }
 
+// Функции для работы с секторами
+export const fetchBeachSectors = async (beachId: string) => {
+  try {
+    const response = await api.get(`/beaches/${beachId}/sectors`)
+    return response.data
+  } catch (error) {
+    console.error(`Ошибка при получении секторов пляжа ${beachId}:`, error)
+    throw error
+  }
+}
+
+export const fetchSectorLoungers = async (beachId: string, sectorId: string) => {
+  try {
+    const response = await api.get(`/beaches/${beachId}/sectors/${sectorId}/loungers`)
+    return response.data
+  } catch (error) {
+    console.error(`Ошибка при получении шезлонгов сектора ${sectorId}:`, error)
+    throw error
+  }
+}
+
+export const selectLounger = async (loungerId: string) => {
+  try {
+    const response = await api.post(`/loungers/${loungerId}/select`)
+    return response.data
+  } catch (error) {
+    console.error(`Ошибка при выборе шезлонга ${loungerId}:`, error)
+    throw error
+  }
+}
+
+// API объекты для секторов
+export const sectorAPI = {
+  getSectors: fetchBeachSectors,
+  getSectorLoungers: fetchSectorLoungers,
+  selectLounger: selectLounger,
+}
+
 // Экспортируем api объект для админ-панели
 export { api }
