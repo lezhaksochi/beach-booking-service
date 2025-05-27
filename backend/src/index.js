@@ -17,7 +17,7 @@ const CronController = require('./controllers/cronController')
 
 const app = express()
 const server = http.createServer(app)
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 5000
 
 // Инициализация WebSocket сервера
 const wsServer = new WebSocketServer(server)
@@ -30,8 +30,8 @@ app.use(helmet())
 app.use(compression())
 app.use(cors({
   origin: function (origin, callback) {
-    // Разрешаем запросы без origin (например, от file://) в режиме разработки
-    if (process.env.NODE_ENV === 'development' && !origin) {
+    // Разрешаем запросы без origin (например, от curl или мобильных приложений)
+    if (!origin) {
       return callback(null, true)
     }
     
@@ -39,13 +39,23 @@ app.use(cors({
     const allowedOrigins = [
       process.env.CORS_ORIGIN || 'http://localhost:3000',
       'http://localhost:3000',
-      'http://127.0.0.1:3000'
+      'http://127.0.0.1:3000',
+      'http://89.111.169.184:3000',
+      'https://89.111.169.184:3000'
     ]
     
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+    // В режиме разработки разрешаем все localhost и 127.0.0.1
+    if (process.env.NODE_ENV === 'development') {
+      if (origin.includes('localhost') || origin.includes('127.0.0.1')) {
+        return callback(null, true)
+      }
+    }
+    
+    if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true)
     } else {
-      callback(new Error('Not allowed by CORS'))
+      console.log('CORS blocked origin:', origin)
+      callback(null, true) // Временно разрешаем все для отладки
     }
   },
   credentials: true
