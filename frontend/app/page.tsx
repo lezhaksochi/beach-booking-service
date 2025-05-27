@@ -92,13 +92,13 @@ export default function Home() {
         
         <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
           <div className="bounce-in">
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6">
               🏖️ Пляжи Сочи
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
+            <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 leading-relaxed px-4">
               Забронируйте лучшие места на самых красивых пляжах Сочи.
-              <br />
-              Современный сервис с реальным временем и удобной оплатой.
+              <br className="hidden sm:block" />
+              <span className="block sm:inline">Современный сервис с реальным временем и удобной оплатой.</span>
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -167,13 +167,13 @@ export default function Home() {
       </section>
 
       {/* Beaches Map Section */}
-      <section id="beaches" className="py-20 px-4 sm:px-6 lg:px-8">
+      <section id="beaches" className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16 fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">
+          <div className="text-center mb-8 sm:mb-16 fade-in">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient mb-4">
               Карта пляжей Сочи
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">
               Выберите пляж и посмотрите доступные места
             </p>
           </div>
@@ -235,18 +235,18 @@ export default function Home() {
                       )}
                     </div>
                     
-                    <div className="flex gap-3">
+                    <div className="flex flex-col sm:flex-row gap-3">
                       <Link
                         href={`/beaches/${beach.id}`}
-                        className="btn-primary flex-1 text-center"
+                        className="btn-primary flex-1 text-center py-3 text-sm sm:text-base"
                       >
-                        Выбрать места
+                        🏖️ Выбрать места
                       </Link>
                       <button 
                         onClick={() => setSelectedBeach(beach)}
-                        className="glass-button px-4"
+                        className="glass-button px-4 py-3 text-sm sm:text-base sm:px-4"
                       >
-                        📍
+                        📍 Карта
                       </button>
                     </div>
                   </div>

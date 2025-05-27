@@ -58,6 +58,17 @@
   .card-hover {
     @apply card transition-all duration-300 hover:shadow-2xl hover:scale-[1.03] cursor-pointer;
   }
+
+  /* Мобильные карточки пляжей */
+  @media (max-width: 768px) {
+    .beach-grid {
+      @apply px-2 gap-4;
+    }
+    
+    .card-hover {
+      @apply mx-2 hover:scale-[1.01];
+    }
+  }
   
   /* Анимации */
   .fade-in {
@@ -95,7 +106,7 @@
   
   /* Responsive grid */
   .beach-grid {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+    @apply grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6;
   }
   
   .lounger-grid {
