@@ -1,0 +1,22 @@
+{
+  "name": "beach-booking-service-production",
+  "version": "1.0.0",
+  "description": "Production deployment of Beach Booking Service",
+  "scripts": {
+    "install-all": "cd backend && npm install && cd ../frontend && npm install",
+    "build": "cd frontend && npm run build",
+    "start-backend": "cd backend && NODE_ENV=production node src/index.js",
+    "start-frontend": "cd frontend && npm start",
+    "deploy": "npm run install-all && npm run build",
+    "pm2:start": "pm2 start ecosystem.config.js",
+    "pm2:stop": "pm2 stop beach-booking",
+    "pm2:restart": "pm2 restart beach-booking",
+    "pm2:logs": "pm2 logs beach-booking"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+}
