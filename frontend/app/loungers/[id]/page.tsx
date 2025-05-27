@@ -93,9 +93,9 @@ export default function LoungerDetailPage({
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div>
-          {lounger.image_url && (
+          {lounger.imageUrl && (
             <img
-              src={lounger.image_url}
+              src={lounger.imageUrl}
               alt={lounger.name}
               className="w-full h-64 lg:h-80 object-cover rounded-lg"
             />
@@ -106,7 +106,7 @@ export default function LoungerDetailPage({
               {lounger.name}
             </h1>
             <p className="text-lg text-gray-600 mb-4">
-              📍 {lounger.beach_name}
+              📍 {lounger.beach?.name}
             </p>
             <p className="text-gray-700 mb-6">{lounger.description}</p>
             

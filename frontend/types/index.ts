@@ -9,7 +9,7 @@ export interface Beach {
   description: string
   location_lat: number
   location_lng: number
-  image_url?: string
+  imageUrl?: string
   amenities: string[]
   created_at: string
   updated_at: string
@@ -32,6 +32,7 @@ export interface Lounger {
   id: string
   beach_id: string
   name: string
+  description?: string
   type: LoungerType
   row_number: number
   seat_number: number
@@ -43,6 +44,7 @@ export interface Lounger {
   created_at: string
   updated_at: string
   current_bookings?: LoungerBooking[]
+  imageUrl?: string
   // Для отображения
   beach?: Beach
 }

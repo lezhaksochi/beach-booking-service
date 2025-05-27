@@ -73,7 +73,8 @@ export default function BeachSectorView({ beachId, beachName }: BeachSectorViewP
           totalLoungers: 20,
           freeLoungers: 15,
           isPremium: false,
-          isVip: false
+          isVip: false,
+          loungers: []
         },
         {
           id: '2',
@@ -82,7 +83,8 @@ export default function BeachSectorView({ beachId, beachName }: BeachSectorViewP
           totalLoungers: 15,
           freeLoungers: 8,
           isPremium: false,
-          isVip: false
+          isVip: false,
+          loungers: []
         },
         {
           id: '3',
@@ -91,7 +93,8 @@ export default function BeachSectorView({ beachId, beachName }: BeachSectorViewP
           totalLoungers: 10,
           freeLoungers: 6,
           isPremium: true,
-          isVip: false
+          isVip: false,
+          loungers: []
         },
         {
           id: '4',
@@ -100,7 +103,8 @@ export default function BeachSectorView({ beachId, beachName }: BeachSectorViewP
           totalLoungers: 8,
           freeLoungers: 3,
           isPremium: false,
-          isVip: true
+          isVip: true,
+          loungers: []
         }
       ]
 

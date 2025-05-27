@@ -9,7 +9,7 @@ interface Beach {
   description: string
   location_lat: number
   location_lng: number
-  image_url: string
+  imageUrl: string
   amenities: string[]
   created_at: string
 }
@@ -24,7 +24,7 @@ export default function BeachesPage() {
     description: '',
     location_lat: '',
     location_lng: '',
-    image_url: '',
+    imageUrl: '',
     amenities: []
   })
 
@@ -79,7 +79,7 @@ export default function BeachesPage() {
         description: '',
         location_lat: '',
         location_lng: '',
-        image_url: '',
+        imageUrl: '',
         amenities: []
       })
       loadBeaches()
@@ -179,8 +179,8 @@ export default function BeachesPage() {
                 <label className="block text-sm font-medium mb-2">URL изображения</label>
                 <input
                   type="url"
-                  value={newBeach.image_url}
-                  onChange={(e) => setNewBeach({...newBeach, image_url: e.target.value})}
+                  value={newBeach.imageUrl}
+                  onChange={(e) => setNewBeach({...newBeach, imageUrl: e.target.value})}
                   className="w-full p-2 border rounded"
                 />
               </div>
@@ -230,9 +230,9 @@ export default function BeachesPage() {
                     </div>
                   )}
                 </div>
-                {beach.image_url && (
+                {beach.imageUrl && (
                   <img 
-                    src={beach.image_url} 
+                    src={beach.imageUrl} 
                     alt={beach.name}
                     className="w-20 h-20 object-cover rounded"
                   />

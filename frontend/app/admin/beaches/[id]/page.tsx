@@ -42,7 +42,7 @@ export default function BeachManagePage() {
           description: data.beach.description || '',
           location_lat: String(data.beach.location_lat || ''),
           location_lng: String(data.beach.location_lng || ''),
-          image_url: data.beach.image_url || '',
+          image_url: data.beach.imageUrl || '',
           is_active: data.beach.is_active ?? true
         })
       } else {
@@ -309,11 +309,11 @@ export default function BeachManagePage() {
               </div>
             </div>
 
-            {beach.image_url && (
+            {beach.imageUrl && (
               <div className="md:col-span-2">
                 <h3 className="text-lg font-medium mb-4">Изображение</h3>
                 <img 
-                  src={beach.image_url} 
+                  src={beach.imageUrl} 
                   alt={beach.name}
                   className="w-64 h-48 object-cover rounded-lg"
                 />

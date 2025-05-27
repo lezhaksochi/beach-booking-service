@@ -194,9 +194,9 @@ export default function Home() {
                   }}
                 >
                   <div className="relative overflow-hidden rounded-t-2xl h-48 bg-gradient-to-br from-blue-400 to-cyan-500">
-                    {beach.image_url ? (
+                    {beach.imageUrl ? (
                       <img 
-                        src={beach.image_url} 
+                        src={beach.imageUrl} 
                         alt={beach.name}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       />
