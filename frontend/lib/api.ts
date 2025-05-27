@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Beach, Lounger, Booking, BookingRequest, BeachLayoutData } from '@/types'
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://89.111.169.184:5000'
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://89.111.169.184:5000'
 
 const api = axios.create({
   baseURL: API_BASE_URL,
