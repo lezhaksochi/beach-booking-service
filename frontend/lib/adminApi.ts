@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://89.111.169.184:3001/api'
 
 class AdminApiError extends Error {
   constructor(message: string, public status?: number) {

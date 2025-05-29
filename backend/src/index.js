@@ -38,7 +38,9 @@ app.use(cors({
     // Разрешенные origins
     const allowedOrigins = [
       process.env.CORS_ORIGIN || 'http://localhost:3000',
+      'http://89-111-169-184.regru.cloud',
       'http://localhost:3000',
+      'http://89-111-169-184.regru.cloud',
       'http://127.0.0.1:3000',
       'http://89.111.169.184:3000',
       'https://89.111.169.184:3000'
